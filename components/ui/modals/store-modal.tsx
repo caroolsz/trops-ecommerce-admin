@@ -1,6 +1,7 @@
 "use client";
 
 import * as z from "zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { Modal } from "@/components/ui/modal";
@@ -32,7 +33,7 @@ export const StoreModal = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
-        // TODO: Create Store 
+        // TODO: Create Store
     }
     return (
     <Modal
@@ -52,14 +53,17 @@ export const StoreModal = () => {
                                 <FormItem>
                                     <FormLabel>Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="E-Commerce" {...field} />
+                                        <Input
+                                        placeholder="E-Commerce"
+                                        {...field}
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                         <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                            <Button 
+                            <Button
                                 variant="outline"
                                 onClick={StoreModal.onClose}>
                                     Cancel
