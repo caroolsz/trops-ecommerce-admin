@@ -27,7 +27,7 @@ import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
     label: z.string().min(1),
-    imageURL: z.string().min(1),
+    imageUrl: z.string().min(1),
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -54,7 +54,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
             label: '',
-            imageURL: ''
+            imageUrl: ''
         }
     });
 
@@ -121,7 +121,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                     <FormField 
                         control={form.control}
-                        name="imageURL"
+                        name="imageUrl"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Background Image</FormLabel>
