@@ -67,7 +67,8 @@ export const SizeForm: React.FC<SizeFormProps> = ({
                 await axios.post(`/api/${params.storeId}/sizes`, data);
             }
             router.refresh();
-            router.push(`/${params.storeId}/sizes`)
+            router.push(`/${params.storeId}/sizes`);
+            router.refresh();
             toast.success(toastMessage);
         } catch {
             toast.error("Something went wrong.");
