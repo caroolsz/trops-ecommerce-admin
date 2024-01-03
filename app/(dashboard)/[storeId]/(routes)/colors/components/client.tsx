@@ -25,11 +25,11 @@ export const ColorsClient: React.FC<ColorsClientProps> = ({
                 <Heading 
                     title={`Colors (${data.length})`}
                     description="Manage colors for your store"
-            />
-            <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
-                <Plus className="mr-2 h-4 w-4"/>
-                Add New
-            </Button>
+                />
+                <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
+                    <Plus className="mr-2 h-4 w-4"/>
+                    Add New
+                </Button>
             </div>
             <Separator />
             <DataTable searchKey="name" columns={columns} data={data} />
