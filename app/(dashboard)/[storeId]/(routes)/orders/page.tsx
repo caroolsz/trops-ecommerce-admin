@@ -33,11 +33,11 @@ const OrdersPage = async ({
         adress: item.adress,
         products: item.orderItems.map((orderItem) => orderItem.product.name).join(', '),
         totalPrice: formatter.format(item.orderItems.reduce((total, item) => {
-            return total + Number(item.product.price)
+          return total + Number(item.product.price)
         }, 0)),
         isPaid: item.isPaid,
-        createdAt: format(item.createdAt, "MMMM do, yyyy")
-    }));
+        createdAt: format(item.createdAt, 'MMMM do, yyyy'),
+      }));
 
     return (
         <div className="flex-col">
