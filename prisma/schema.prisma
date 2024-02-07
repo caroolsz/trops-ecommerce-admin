@@ -136,7 +136,6 @@ model OrderItem {
   order         Order       @relation(fields: [orderId], references: [id])
   productId     String
   product       Product     @relation(fields: [productId], references: [id])
-  price         Decimal
 
   @@index([orderId])
   @@index([productId])
