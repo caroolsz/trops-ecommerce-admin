@@ -19,6 +19,7 @@ export async function POST (
             categoryId,
             colorId,
             sizeId,
+            description,
             images,
             isFeatured,
             isArchived
@@ -40,12 +41,12 @@ export async function POST (
             return new NextResponse("Price is required", { status: 400});
         }
 
-        if (!categoryId ) {
-            return new NextResponse("Category id is required", { status: 400});
+        if (!description ) {
+            return new NextResponse("Description is required", { status: 400});
         }
 
-        if (!sizeId ) {
-            return new NextResponse("Size id is required", { status: 400});
+        if (!categoryId ) {
+            return new NextResponse("Category id is required", { status: 400});
         }
 
         if (!colorId ) {
@@ -55,7 +56,7 @@ export async function POST (
         if (!params.storeId) {
             return new NextResponse("Store id is required", { status: 400});
         }
-
+    
         const storeByUserId = await prismadb.store.findFirst({
             where: {
                 id: params.storeId,
@@ -66,7 +67,6 @@ export async function POST (
         if (!storeByUserId) {
             return new NextResponse("Unauthorized", { status: 403});
         }
-
         const product = await prismadb.product.create({
             data: {
                 name,
@@ -76,15 +76,16 @@ export async function POST (
                 categoryId,
                 colorId,
                 sizeId,
+                description,
                 storeId: params.storeId,
                 images: {
                     createMany: {
                         data: [
-                            ...images.map((image: { url: string }) => image)
-                        ]
-                    }
+                            ...images.map((image: { url: string }) => image),
+                        ],
+                    },
                 }
-            }
+            },
         });
 
         return NextResponse.json(product);
@@ -92,7 +93,7 @@ export async function POST (
         console.log('[PRODUCTS_POST]', error);
         return new NextResponse("Internal Error", { status: 500 });
     }
-}
+};
 
 export async function GET (
     req: Request,

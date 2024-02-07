@@ -9,7 +9,9 @@ import { formatter } from "@/lib/utils";
 const ProductsPage = async ({
     params
 }: {
-    params: { storeId: string }
+    params: {
+        storeId: string
+}
 }) => {
     const products = await prismadb.product.findMany({
         where: {
@@ -36,8 +38,6 @@ const ProductsPage = async ({
         color: item.color.value,
         createdAt: format(item.createdAt, "MMMM do, yyyy")
     }));
-
-    console.log('products', products);
 
     return (
         <div className="flex-col">
